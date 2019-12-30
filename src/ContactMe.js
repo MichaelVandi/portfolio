@@ -9,6 +9,7 @@ import * as emailjs from 'emailjs-com'
 import Global from './Global';
 
 var emailId = Global.getEmailJsId();
+alert(emailId);
 
 class ContactMe extends React.Component{
     constructor(props){
@@ -40,7 +41,7 @@ class ContactMe extends React.Component{
             reply_to: this.state.from_email,
        }
        var that = this;
-       emailjs.send('zoho', 'template_83TGLJXz', templateParams, emailJsId)
+       emailjs.send('zoho', 'template_83TGLJXz', templateParams, emailId)
         .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
         that.setState({success_msg: 'Message sent successfully!!'})
@@ -96,7 +97,7 @@ class ContactMe extends React.Component{
                                     <View>
                                         <Text style={styles.message_header_text}>Contact Info</Text>
                                     </View>
-                                    {/* <Text style={styles.info_text}> 
+                                    {/* <Text style={      styles.info_text}> 
                                     <FaEnvelope style={{marginRight: 5}}/>
                                     mikevee2013@gmail.com</Text> */}
 
