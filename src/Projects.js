@@ -152,10 +152,12 @@ const styles = StyleSheet.create({
         
     },
     proj_wrapper:{
-        marginVertical: 15,
-        borderBottomColor: '#E1E1E1',
-        borderBottomWidth: 10,
-        paddingHorizontal: 5,
+        marginVertical: 10,
+        margin: 5,
+        padding: 10,
+        borderColor: '#D0D1D2',
+        borderWidth: 1,
+        borderRadius: 10,
     },
     title_image_view:{
         display: 'flex',

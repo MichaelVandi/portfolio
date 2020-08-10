@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { withRouter } from "react-router-dom";
+import {FaHome, FaInfoCircle, FaCode, FaMobile, FaGraduationCap, FaEnvelope} from 'react-icons/fa';
 import {Link} from "react-scroll";
 
 var device_width = Dimensions.get("window").width;
@@ -82,38 +83,44 @@ class SideNavMobile extends React.Component {
           </View>
           <View>
           <div className="navbar" style={{flexDirection: 'column'}}>
-              <Link activeClass="active" to="home" spy={true} smooth={true} offset={-60} duration={500}>
+              <Link style={{width: '100%'}} activeClass="active" to="home" spy={true} smooth={true} offset={-60} duration={500}>
                 <TouchableOpacity style = {styles.button}>
+                  <FaHome size ="1.5em" color="grey" style={{marginRight: 10}}/>
                   <Text style = {styles.text}> Home</Text>
                 </TouchableOpacity>
               </Link>
 
-              <Link activeClass="active" to="about" spy={true} smooth={true} offset={-60} duration={500}>
+              <Link style={{width: '100%'}} activeClass="active" to="about" spy={true} smooth={true} offset={-60} duration={500}>
                 <TouchableOpacity style = {styles.button}>
+                  <FaInfoCircle size ="1.5em" color="grey" style={{marginRight: 10}}/>
                   <Text style = {styles.text}> About</Text>
                 </TouchableOpacity>
               </Link>
 
-              <Link activeClass="active" to="skills" spy={true} smooth={true} offset={-60} duration={500}>
+              <Link style={{width: '100%'}} activeClass="active" to="skills" spy={true} smooth={true} offset={-60} duration={500}>
                 <TouchableOpacity style = {styles.button}>
+                  <FaCode size ="1.5em" color="grey" style={{marginRight: 10}}/>
                   <Text style = {styles.text}> Skills</Text>
                 </TouchableOpacity>
               </Link>
 
-              <Link activeClass="active" to="projects" spy={true} smooth={true} offset={-60} duration={500}>
+              <Link style={{width: '100%'}} activeClass="active" to="projects" spy={true} smooth={true} offset={-60} duration={500}>
                 <TouchableOpacity style = {styles.button}>
+                  <FaMobile size ="1.5em" color="grey" style={{marginRight: 10}}/>
                   <Text style = {styles.text}> Projects</Text>
                 </TouchableOpacity>
               </Link>
 
-              <Link activeClass="active" to="resume" spy={true} smooth={true} offset={-60} duration={500}>
+              <Link style={{width: '100%'}} activeClass="active" to="resume" spy={true} smooth={true} offset={-60} duration={500}>
                 <TouchableOpacity style = {styles.button}>
+                  <FaGraduationCap size ="1.5em" color="grey" style={{marginRight: 10}}/>
                   <Text style = {styles.text}> Resume</Text>
                 </TouchableOpacity>
               </Link>
 
-              <Link activeClass="active" to="contact" spy={true} smooth={true} offset={-60} duration={500}>
+              <Link style={{width: '100%'}} activeClass="active" to="contact" spy={true} smooth={true} offset={-60} duration={500}>
                 <TouchableOpacity style = {styles.button}>
+                  <FaEnvelope size ="1.5em" color="grey" style={{marginRight: 10}}/>
                   <Text style = {styles.text}> Contact</Text>
                 </TouchableOpacity>
               </Link>
@@ -157,9 +164,10 @@ const styles = StyleSheet.create({
   
   },
   button:{
+    display: 'flex',
+    flexDirection: 'row',
     borderBottomColor: "#D0D1D2",
     borderBottomWidth: 1,
-    justifyContent: 'center',
     width:'100%',
     padding: 5,
     marginBottom: 5,
@@ -175,10 +183,12 @@ const styles = StyleSheet.create({
   nameText:{
     fontWeight:"bold",
     fontSize: 19,
-    fontFamily:'Monospace'
+    fontFamily:'Monospace',
+    color: '#2D3047',
   },
   posText:{
-    fontSize: 16,
+    fontSize: 13,
+    fontFamily:'Monospace'
   },
   copyrightText:{
     width: "100%",

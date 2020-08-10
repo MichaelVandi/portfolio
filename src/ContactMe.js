@@ -7,10 +7,10 @@ import {FaEnvelope, FaGithub, FaPhone, FaLinkedin, FaInstagram} from 'react-icon
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import * as emailjs from 'emailjs-com'
 import Global from './Global';
+import Recaptcha from 'react-recaptcha';
 
 var emailId = Global.getEmailJsId();
-alert(emailId);
-
+var recaptchaSiteKey = Global.getRecaptchaSiteKey();
 class ContactMe extends React.Component{
     constructor(props){
         super(props);
@@ -22,6 +22,7 @@ class ContactMe extends React.Component{
             message: '',
             success_msg: '',
             fail_msg: '',
+            isHuman: false,
             
         }
         this.from_name = React.createRef();
@@ -33,23 +34,29 @@ class ContactMe extends React.Component{
         })
     }
     sendEmail =()=>{
-        let templateParams = {
-            from_name: this.state.from_name,
-            to_name: 'Michael',
-            subject: this.state.subject,
-            message_html: this.state.message,
-            reply_to: this.state.from_email,
-       }
-       var that = this;
-       emailjs.send('zoho', 'template_83TGLJXz', templateParams, emailId)
-        .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-        that.setState({success_msg: 'Message sent successfully!!'})
-        }, function(error) {
-        console.log('FAILED...', error);
-        that.setState({fail_msg: 'Something went wrong, please try again later'})
-        });
-        this.resetForm();
+        if(this.state.isHuman === true){
+            let templateParams = {
+                from_name: this.state.from_name,
+                to_name: 'Michael',
+                subject: this.state.subject,
+                message_html: this.state.message,
+                reply_to: this.state.from_email,
+           }
+           var that = this;
+           emailjs.send('zoho', 'template_83TGLJXz', templateParams, emailId)
+            .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            that.setState({success_msg: 'Message sent successfully!!'})
+            }, function(error) {
+            console.log('FAILED...', error);
+            that.setState({fail_msg: 'Something went wrong, please try again later'})
+            });
+            this.resetForm();
+        }
+        else{
+            alert("Please verify you're human");
+        }
+        
     }
     resetForm =()=>{
         this.setState({
@@ -59,7 +66,16 @@ class ContactMe extends React.Component{
             message: '',
         })
     }
-
+    callback=()=>{
+        console.log("Recaptcha loaded")
+    }
+    verifyCallback=(response)=>{
+        if(response){
+            this.setState({
+                isHuman: true,
+            });
+        }
+    }
     onSendClick =()=>{
         if(!this.state.from_email.toUpperCase().match("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$")){
             alert("Invalid Email address")
@@ -84,7 +100,7 @@ class ContactMe extends React.Component{
         return(
             <View>
                 <Text style={styles.heading_text}>
-                    Contact M<mark style={{backgroundColor: 'black', color: 'white', marginLeft: 1}}>e</mark>
+                    Contact M<mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>e</mark>
                 </Text>
                 <View style={{marginTop: 20, marginBottom: 50}}>
                     {/* Contact row */}
@@ -97,9 +113,7 @@ class ContactMe extends React.Component{
                                     <View>
                                         <Text style={styles.message_header_text}>Contact Info</Text>
                                     </View>
-                                    {/* <Text style={      styles.info_text}> 
-                                    <FaEnvelope style={{marginRight: 5}}/>
-                                    mikevee2013@gmail.com</Text> */}
+                                    
 
                                     <Text style={styles.info_text}> 
                                     <FaEnvelope style={{marginRight: 5}}/>
@@ -200,6 +214,15 @@ class ContactMe extends React.Component{
                                                     onInput={this.handleInput}
                                                 />
                                                 </div>
+                                                <div style={{marginTop: 10, marginBottom: 10}}>
+                                                    <Recaptcha
+                                                        sitekey={recaptchaSiteKey}
+                                                        render="explicit"
+                                                        verifyCallback={this.verifyCallback}
+                                                        onloadCallback={this.callback}
+                                                    />
+                                                </div>
+                                                
                                                 <div className="text-center">
                                                 <MDBBtn onClick={()=> this.onSendClick()}
                                                     style={{width: '100%', }} outline color="secondary">
@@ -245,15 +268,7 @@ const styles= StyleSheet.create({
     },
     message_header:{
         width: '80%',
-        shadowColor: '#000000',
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowRadius: 5,
-        shadowOpacity: 0.7,
-        borderRadius: 5,
-        marginBottom: 15,
+        marginBottom: 5,
     },
     message_header_text:{
         textAlign: 'center',
@@ -266,6 +281,7 @@ const styles= StyleSheet.create({
         fontSize: 27,
         fontFamily: 'Monospace',
         marginVertical: 10, 
+        color: '#2D3047',
     },
     info_text:{
         fontSize: 17,

@@ -38,48 +38,28 @@ class Resume extends React.Component{
     renderRow =(experience) => {
         return(
             <View style={styles.experience_wrapper}>
-                <Row>
-                    <Col xs="5">
-                        {/* Vertical Layout for organization info */}
-                        <View style={styles.organization_col}>
-                            {/* Company Name */}
-                            <View style={{display: 'flex', flexDirection: 'row'}}>
-                                <Image style={styles.logos} source={experience.logo} />
-                                <Text style={styles.organization_text}>
-                                    {experience.organization}
-                                </Text>
-                                
+                <View>
+                    <Row>
+                        <Col sm='7'>
+                            <Text style={styles.organization_text}>
+                                {experience.organization} - {experience.position}
+                            </Text>
+                        </Col>
+
+                        <Col sm='5'>
+                            <View style={styles.top}>
+                                <Text style={styles.locationText}>{experience.location}</Text>
+                                <Text style={styles.durationText}>{experience.duration}</Text>  
                             </View>
-                            
-                            {/* Location */}
-                            <Text style= {styles.normal_text}>
-                                {experience.location}
-                            </Text>
-                            {/* Duration */}
-                            <Text style={styles.normal_text}>
-                                {experience.duration}
-                            </Text>
-                        </View>
-                    </Col>
-
-                    <Col xs="7">
-                        {/* Vertical Layout for position and Contribution info */}
-                        <View style={styles.role_col}>
-                            {/* Role */}
-                            <Text style={styles.role_text}>
-                                {experience.position}
-                            </Text>
-                            {/* Description */}
-                            <Text style={styles.normal_text}>
-                                {experience.description}
-                            </Text>
-                            <a href={experience.href} style={{color: 'blue', textDecorationLine: 'underline'}}>
-                            {experience.link_title}
-                            </a>
-
-                        </View>
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                </View>
+                <View style={styles.descriptionView}>
+                    <Text style={styles.normal_text}>{experience.description}</Text>
+                    <a href={experience.href} style={{color: 'blue', textDecorationLine: 'underline'}}>
+                        {experience.link_title}
+                    </a>
+                </View>
 
             </View>
         )
@@ -90,7 +70,7 @@ class Resume extends React.Component{
             
             <View style={styles.wrapper}>
                 <Text style={styles.heading_text}>
-                    Resum<mark style={{backgroundColor: 'black', color: 'white', marginLeft: 2}}>e</mark>
+                    Resum<mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>e</mark>
                 </Text>
                 <Text style={styles.title_text}>
                     Experience
@@ -124,14 +104,10 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         margin: 5,
         padding: 10,
+        borderColor: '#D0D1D2',
+        borderWidth: 1,
         borderRadius: 10,
-        shadowColor: '#000000',
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowRadius: 5,
-        shadowOpacity: 0.5,
+        
     },
     title_text:{
         fontWeight:'bold',
@@ -145,6 +121,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Monospace',
         alignSelf:'baseline',
         marginVertical: 10, 
+        color: '#2D3047',
     },
     organization_col:{
         display: 'flex',
@@ -156,19 +133,21 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         //borderLeftWidth: 5,
         paddingLeft: 10,
-        //borderLeftColor: '#C9C9C9',
-        // shadowColor: '#000000',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 2
-    // },
-    // shadowRadius: 5,
-    // shadowOpacity: 0.7,
     },
     organization_text:{
         fontWeight: 'bold',
         marginVertical: 2,
         fontSize: 16,
+    },
+    locationText: {
+        fontStyle: 'italic',
+        fontSize: 16,
+        marginHorizontal: 10,
+    },
+    durationText: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        color: '#585858',
     },
     role_text:{
         fontWeight: 'bold',
@@ -177,12 +156,21 @@ const styles = StyleSheet.create({
     },
     normal_text:{
         fontSize: 16,
-        marginBottom: 10,
+        // marginBottom: 10,
     },
     logos:{
         width: 40,
         height: 40,
         marginRight: 10,
+    },
+    top: {
+        width: '100%',
+        display: 'flex', 
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    descriptionView: {
+        paddingVertical: 10,
     }
 
 

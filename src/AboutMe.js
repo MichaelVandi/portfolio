@@ -15,7 +15,7 @@ class AboutMe extends React.Component{
             return(
                 <View style = {styles.container}>
                     <Text style= {styles.heading}>
-                        Who Am I<mark style={{backgroundColor: 'black', color: 'white'}}>?</mark>
+                        Who Am I<mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>?</mark>
                     </Text>
                     <Text style ={styles.normalText}>
                     Hi! I’m Michael. I am an Applied Computer Science student at the University of Baltimore 
@@ -65,14 +65,14 @@ class AboutMe extends React.Component{
 const styles = StyleSheet.create({
     container:{
         width: "100%",
-        marginTop: 15,
-        padding: 5,  
+        // marginTop: 15,
     },
     heading: {
         fontWeight: 'bold',
         fontSize: 27,
         fontFamily: 'Monospace',
         marginVertical: 10,
+        color: '#2D3047',
     },
     normalText:{
         fontSize: 16,

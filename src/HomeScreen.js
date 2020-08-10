@@ -16,10 +16,10 @@ else if(device_width>400 && device_width<500){
   var home_height = device_height * 0.65;
 }
 else if(device_width>500 && device_width<700){
-  var home_height = device_height * 0.8;
+  var home_height = device_height * 0.7;
 }
 else if(device_width>700){
-  var home_height = device_height * 0.97;
+  var home_height = device_height * 0.806;
 }
 class HomeScreen extends React.Component {
   constructor(props){
@@ -50,15 +50,15 @@ class HomeScreen extends React.Component {
 
           </Carousel>
           <Text style={styles.carousel_text}>Hi! I'm Michael and ...I write cod
-            <mark style={{backgroundColor: 'white', color: 'black', marginLeft: 1}}>e</mark></Text>
+            <mark style={{backgroundColor: 'white', color: 'black', marginLeft: 1, borderRadius: 5}}>e</mark></Text>
           </View>
 
           <View style={styles.button_container}>
             <TouchableOpacity style={styles.touchable}>
-              <a href="https://firebasestorage.googleapis.com/v0/b/portfolio-fb3f6.appspot.com/o/Michael_Vandi_Resume.pdf?alt=media&token=8799292d-d259-4796-8db2-2f1d78c08945"
-              style={{color:'black', fontSize: 16, fontFamily: 'Monospace', fontWeight:'bold',}}
+              <a href="https://firebasestorage.googleapis.com/v0/b/portfolio-fb3f6.appspot.com/o/Michael_Vandi_Resume.pdf?alt=media&token=16ead850-24d2-4388-9021-9023776c0e47"
+              style={{color:'white', fontSize: 16, fontFamily: 'Monospace', fontWeight:'bold',}}
               target="_blank">
-              Download Resume</a>
+              Resume</a>
             </TouchableOpacity>
 
             <Link activeClass="active" to="projects" spy={true} smooth={true} offset={-60} duration={500}>
@@ -68,13 +68,15 @@ class HomeScreen extends React.Component {
             </Link>
 
             <TouchableOpacity style={styles.touchable}>
-            <a style={{color:'black', fontSize: 16, fontFamily: 'Monospace', fontWeight:'bold',}}
+            <a style={{color:'white', fontSize: 16, fontFamily: 'Monospace', fontWeight:'bold',}}
               href ="https://github.com/MichaelVandi/" target="_blank">
-              My Github</a>
+              Github</a>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.touchable} onPress={()=> alert("Coming soon...")}>
-              <Text style={styles.button_text}>Visit My Blog</Text>
+            <TouchableOpacity style={styles.touchable}>
+            <a style={{color:'white', fontSize: 16, fontFamily: 'Monospace', fontWeight:'bold',}}
+              href ="https://www.youtube.com/channel/UCZOiUkaF2fy8Mn0gZiKiDyQ/" target="_blank">
+              YouTube</a>
             </TouchableOpacity>
           </View>
         </View>
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: "100%",
     height: home_height,
-    marginTop: 62,
+    // paddingTop: 62,
     
   },
   carousel: {
@@ -115,19 +117,11 @@ const styles = StyleSheet.create({
     
   },
   touchable:{
-    borderColor: "#D0D1D2",
-    borderRadius: 10,
-    borderWidth: 2,
+    borderRadius: 7,
     padding: 10,
     marginRight: 10,
     marginBottom: 5,
-    shadowColor: '#000000',
-    shadowOffset: {
-    width: 2,
-    height: 2
-    },
-    shadowRadius: 5,
-    shadowOpacity: 0.3,
+    backgroundColor: '#2D3047',
   },
   button_container:{
     display:'inline-flex',
@@ -136,7 +130,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   button_text:{
-    color:'black',
+    color:'white',
     fontSize: 17,
     fontFamily: 'Monospace',
     fontWeight:'bold',

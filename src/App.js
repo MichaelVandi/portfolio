@@ -150,49 +150,58 @@ class App extends Component {
       <ShowHamburgerMenu/>
       <ShowMobileNav/> 
       <View style={styles.header}>
-        <Text style={styles.headerText}>michael_vandi<mark style={{backgroundColor: 'black', color: 'white'}}>;</mark></Text>
+        <Text style={styles.headerText}>michael_vandi()
+          <mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>;</mark></Text>
       </View>   
       <Container fluid={false}>
-        <View>
+        <View style={styles.container}>
           <Row className="justify-content-md-center">
-            <Col md="3" style={{backgroundColor: '#ECECEC',}}>
+            <Col md="3">
               <ShowSideNav />
             </Col>
            
             <Col md="9">
-              <div id="home">
-                <HomeScreen/>
-              </div>
-              <div id="about">
-                <AboutMe/>
-              </div>
-              <div id="skills">
-                <Skills/>
-              </div>
-              <div id="projects">
-                <Projects imagesFromProject={this.projectCallback} projectDemo={this.demoCallBack}/>
-              </div>
-              <div id="resume">
-                <Resume/>
-              </div>
-              <div id="contact">
-                <ContactMe/>
-              </div>
-              
-              <div className="d-none d-md-block" style={{position: "fixed",
-                top: "10px",
-                //left: "50%",
-                //zIndex: 204,
-                transform: "translate(-50%, -50%, -50%, -50%)",
-                }}>
-          <ExpandedProject
-            image1={this.state.img_lg1} 
-            image2={this.state.img_lg2} 
-            image3={this.state.img_lg3}
-            show_modal={true}
-          />
-          </div>
-              
+            <View style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}>
+              <div id="home" style={{backgroundColor: 'white', borderRadius: 10, 
+                  padding: 20, width: '95%', marginTop: 25}}>
+                  <HomeScreen/>
+                </div>
+                <div id="about" style={{backgroundColor: 'white', borderRadius: 10, 
+                  padding: 20, width: '95%', marginTop: 25}}>
+                  <AboutMe/>
+                </div>
+                <div id="skills" style={{backgroundColor: 'white', borderRadius: 10, 
+                  padding: 20, width: '95%', marginTop: 25, }}>
+                  <Skills/>
+                </div>
+                <div className="justify-content-md-center" id="projects" 
+                  style={{backgroundColor: 'white', borderRadius: 10, 
+                  padding: 20, width: '95%', marginTop: 25}}>
+                  <Projects imagesFromProject={this.projectCallback} projectDemo={this.demoCallBack}/>
+                </div>
+                <div id="resume" style={{backgroundColor: 'white', borderRadius: 10, 
+                  padding: 20, width: '95%', marginTop: 25}}>
+                  <Resume/>
+                </div>
+                <div id="contact" style={{backgroundColor: 'white', borderRadius: 10, 
+                  padding: 20, width: '95%', marginTop: 25}}>
+                  <ContactMe/>
+                </div>
+                
+                <div className="d-none d-md-block" style={{position: "fixed",
+                  top: "10px",
+                  //left: "50%",
+                  //zIndex: 204,
+                  transform: "translate(-50%, -50%, -50%, -50%)",
+                  }}>
+            <ExpandedProject
+              image1={this.state.img_lg1} 
+              image2={this.state.img_lg2} 
+              image3={this.state.img_lg3}
+              show_modal={true}
+            />
+            </div>
+            </View>
             </Col>
           </Row>
         </View>
@@ -204,7 +213,9 @@ class App extends Component {
 }
 const styles =StyleSheet.create({
     container:{
-      backgroundColor: '#EDEDED'
+      backgroundColor: '#EDEDED',
+      paddingTop: 47,
+      paddingBottom: 30,
     },
     elevation: {
       shadowColor: '#000000',
@@ -256,14 +267,19 @@ const styles =StyleSheet.create({
     },
     headerText:{
       fontFamily: 'Monospace',
+      // fontWeight: 'bold',
       fontSize: header_text_size,
-      color: 'black',
-      //color: 'white',
+      color: '#2D3047',
       width: '100%',
       height: '100%',
       textAlign: 'center',
       textAlignVertical: 'center',
       paddingTop: 4,
+    },
+    sections: {
+      backgroundColor: 'white',
+      margin: 20,
+      borderRadius: 10,
     }
 
 })
