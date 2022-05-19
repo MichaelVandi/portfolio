@@ -28,6 +28,8 @@ class App extends Component {
       showHamburgerMenu: false,
       showMobileNav: false,
       showLargeProject: false,
+      mainBackgroundColor: 'transparent',
+      fluid: false,
       img_lg1: '',
       img_lg2: '',
       img_lg3:'',
@@ -39,17 +41,23 @@ class App extends Component {
     /**
    * Calculate & Update state of new dimensions
    */
+  // #EDEDED
   updateDimensions() {
     if(window.innerWidth <= 768) {
       this.setState({
         showSideNav: false,
         showHamburgerMenu: true,
+        fluid: true,
+
+        mainBackgroundColor: '#f3f2ef',
       })
     } else {
       this.setState({
         showSideNav: true,
         showHamburgerMenu: false,
         showMobileNav: false,
+        fluid: false,
+        mainBackgroundColor: '#f3f2ef',
       })
     }
   }
@@ -74,14 +82,17 @@ class App extends Component {
       this.setState({
         showSideNav: false,
         showHamburgerMenu: true,
-        
+        fluid: true,
+        mainBackgroundColor: '#f3f2ef',
       })
-      header_text_size = 23;
+      header_text_size = 21;
     }
     else{
       this.setState({
         showSideNav: true,
-        showHamburgerMenu: false
+        showHamburgerMenu: false,
+        fluid: false,
+        mainBackgroundColor: 'transparent',
       })
     }
   }
@@ -143,9 +154,9 @@ class App extends Component {
         return(null)
       }
     }
-
+    var bgColor = this.state.mainBackgroundColor;
     return (
-      <View>
+      <View style={{backgroundColor: bgColor}}>
       
       <ShowHamburgerMenu/>
       <ShowMobileNav/> 
@@ -157,34 +168,38 @@ class App extends Component {
         <View style={styles.container}>
           <Row className="justify-content-md-center">
             <Col md="3">
+              {/* <View style={{
+                borderColor: 'green', borderWidth: 2, alignItems: 'flex-end'}}>
+                
+              </View> */}
               <ShowSideNav />
             </Col>
            
             <Col md="9">
             <View style={{width: '100%', justifyContent: 'center', alignItems: 'center'}}>
-              <div id="home" style={{backgroundColor: 'white', borderRadius: 10, 
-                  padding: 20, width: '95%', marginTop: 25}}>
+                <div id="home" style={{backgroundColor: 'white', borderRadius: 10, padding: 15, 
+                width: '97%', marginTop: 25}}>
                   <HomeScreen/>
                 </div>
                 <div id="about" style={{backgroundColor: 'white', borderRadius: 10, 
-                  padding: 20, width: '95%', marginTop: 25}}>
+                  padding: 15, width: '97%', marginTop: 25}}>
                   <AboutMe/>
                 </div>
                 <div id="skills" style={{backgroundColor: 'white', borderRadius: 10, 
-                  padding: 20, width: '95%', marginTop: 25, }}>
+                  padding: 15, width: '97%', marginTop: 25}}>
                   <Skills/>
                 </div>
                 <div className="justify-content-md-center" id="projects" 
                   style={{backgroundColor: 'white', borderRadius: 10, 
-                  padding: 20, width: '95%', marginTop: 25}}>
+                  padding: 15, width: '97%', marginTop: 25}}>
                   <Projects imagesFromProject={this.projectCallback} projectDemo={this.demoCallBack}/>
                 </div>
                 <div id="resume" style={{backgroundColor: 'white', borderRadius: 10, 
-                  padding: 20, width: '95%', marginTop: 25}}>
+                  padding: 15, width: '97%', marginTop: 25}}>
                   <Resume/>
                 </div>
-                <div id="contact" style={{backgroundColor: 'white', borderRadius: 10, 
-                  padding: 20, width: '95%', marginTop: 25}}>
+                <div id="contact" style={{backgroundColor: 'white', borderRadius: 10, paddingRight: 20, paddingLeft: 20,
+                  paddingTop: 15, paddingBottom: 15, width: '97%', marginTop: 25}}>
                   <ContactMe/>
                 </div>
                 
@@ -213,18 +228,19 @@ class App extends Component {
 }
 const styles =StyleSheet.create({
     container:{
-      backgroundColor: '#EDEDED',
+      backgroundColor: '#f3f2ef',
       paddingTop: 47,
       paddingBottom: 30,
     },
     elevation: {
-      shadowColor: '#000000',
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowRadius: 5,
-      shadowOpacity: 0.7,
+      // shadowColor: '#000000',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 0.5
+      // },
+      // shadowRadius: 5,
+      // shadowOpacity: 0.7,
+      borderColor: '#f3f2ef',
       borderRadius: 5,
       padding: 3,
       margin: 3,
@@ -258,10 +274,10 @@ const styles =StyleSheet.create({
       shadowColor: '#000000',
       shadowOffset: {
         width: 0,
-        height: 2
+        height: 0.5
       },
-      shadowRadius: 5,
-      shadowOpacity: 0.7,
+      shadowRadius: 1.7,
+      shadowOpacity: 0.5,
       position: 'fixed',
       zIndex: 205
     },

@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import firebase from './Firebase';
+import './App.css';
 
 class Projects extends React.Component{
     constructor(props){
@@ -35,9 +36,9 @@ class Projects extends React.Component{
     bottomLink1 =(project)=>{
         if(project.link1){
             return(
-                <TouchableOpacity style={styles.touchable}>
-                    <a target="_blank" href={project.demo_video} 
-                    style={{color:'black', fontSize: 16, fontFamily: 'Monospace'}}>{project.link1}</a>
+                <TouchableOpacity className="actionButtonsTouchable" style={styles.touchable}>
+                    <a className="projectActionButtons" target="_blank" href={project.demo_video} 
+                    style={{fontSize: 16}}>{project.link1}</a>
                 </TouchableOpacity>
             )
         }
@@ -46,8 +47,8 @@ class Projects extends React.Component{
     bottomLink2 =(project)=>{
         if(project.link2){
             return(
-                <TouchableOpacity style={styles.touchable}>
-                    <a style={{color:'black', fontSize: 16, fontFamily: 'Monospace'}}
+                <TouchableOpacity className="actionButtonsTouchable" style={styles.touchable}>
+                    <a className="projectActionButtons" style={{fontSize: 16,}}
                     href={project.link2_href} target="_blank">{project.link2}</a>
                 </TouchableOpacity>
             )
@@ -56,60 +57,75 @@ class Projects extends React.Component{
     bottomLink3 =(project)=>{
         if(project.link3){
             return(
-                <TouchableOpacity style={styles.touchable}>
-                    <a style={{color:'black', fontSize: 16, fontFamily: 'Monospace'}}
+                <TouchableOpacity className="actionButtonsTouchable" style={styles.touchable}>
+                    <a className="projectActionButtons" style={{fontSize: 16}}
                     href={project.link3_href} target="_blank">{project.link3}</a>
                 </TouchableOpacity>
             )
         } 
     }
     project =(project)=>{
+        let descriptionSummary = project.description.toString().substring(0, 200);
+        let fullDescription = project.description.toString();
+        
+        
         return(
             <View style={styles.proj_wrapper}>
                  {/* This view contains main project information */}
                 <View>
-                <Row>
-                    <Col sm="7">
-                        {/* Project Title and Image */}
-                        <View style = {styles.title_image_view}>
-                            <Image style={styles.profile_img} source = {project.logo}/>
-                            <View style={styles.title_text_View}>
-                                <Text style = {styles.title_text}>{project.title}</Text>
+
+
+                    <View style = {styles.title_image_view}>
+                        <Image style={styles.profile_img} source = {project.logo}/>
+                        <View style={styles.title_text_View}>
+                            <Text style = {styles.title_text}>{project.title}</Text>
+                            <View style={styles.wrapView}>
                                 <Text style={styles.languages_text}>{project.languages}</Text>
+                                
                             </View>
                         </View>
-                        {/* Project description*/}
-                        <View style={{marginVertical: 10}}>
-                            <Text style={styles.descriptionText}>{project.description}</Text>
                         </View>
-                    </Col>
-                    {/* Column for image carousel*/}
-                    <Col style={{marginTop: 70,}} sm="5">
-                    <View style={styles.images_view}>
-                        <Text style={{fontSize: 17, fontWeight: "bold",}}>Screenshots</Text>
-                        <Carousel 
-                        onClickItem={()=>{this.projectCallBack(project.image1, 
-                        project.image2, project.image3)}}
-                        autoPlay={true} dynamicHeight={true} stopOnHover={true} infiniteLoop={true}>
+                        {/* Project description*/}
+                        <View style={{marginVertical: 10, display:'inline-flex', flexDirection: 'row', flexWrap: 'wrap',}}>
+                            <p id={project.title} style={{fontSize: 16,marginVertical: 10,}}>
+                            {descriptionSummary} <a className="seeMore"
+                            onClick={() => {document.getElementById(project.title).innerText = fullDescription}} 
+                            >...read more</a></p>
+                        </View>
+
+                        <View style={styles.images_view}>
+                            <Text style={{fontSize: 17, fontWeight: "bold",}}>Screenshots</Text>
+                            <Carousel 
+                            onClickItem={()=>{this.projectCallBack(project.image1, 
+                            project.image2, project.image3)}}
+                            autoPlay={true} dynamicHeight={true} stopOnHover={true} infiniteLoop={true}>
+                                
+                                <div>
+                                    <img src = {project.image1}/>
+                                </div>
+
+                                <div>
+                                    <img src = {project.image2}/>
+                                </div>
+                                <div>
+                                    <img src = {project.image3}/>
+                                </div>
+
+                            </Carousel>
+                            <Text 
+                            className="d-none d-md-block"
+                            style={{textAlign: 'center', fontSize: 12}}>Click current slide to expand</Text> 
+                        </View>
+                        {/* <Row>
+                            <Col sm="7"> */}
+                                {/* Project Title and Image */}
+                                
+                            {/* </Col> */}
+                            {/* Column for image carousel*/}
+                            {/* <Col style={{marginTop: 70,}} sm="5">
                             
-                            <div>
-                                <img src = {project.image1}/>
-                            </div>
-
-                            <div>
-                                <img src = {project.image2}/>
-                            </div>
-                            <div>
-                                <img src = {project.image3}/>
-                            </div>
-
-                        </Carousel>
-                        <Text 
-                        className="d-none d-md-block"
-                        style={{textAlign: 'center', fontSize: 12}}>Click current slide to expand</Text> 
-                    </View>
-                    </Col>
-                </Row>
+                            </Col> */}
+                        {/* </Row> */}
 
                 </View>
                 {/* View for action buttons */}
@@ -131,7 +147,7 @@ class Projects extends React.Component{
         return (
             <View style={styles.wrapper}>
                 <Text style={styles.heading_text}>
-                    Project<mark style={{backgroundColor: 'black', color: 'white'}}>s</mark>
+                    Project<mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>s</mark>
                 </Text>
                 <ListView
                     dataSource = {this.state.dataSource}
@@ -148,15 +164,16 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         marginVertical: 10,
-        padding: 5,  
+        padding: 5,
         
     },
     proj_wrapper:{
         marginVertical: 10,
         margin: 5,
-        padding: 10,
-        borderColor: '#D0D1D2',
-        borderWidth: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderColor: '#e9e9e9',
+        borderWidth: 0.7,
         borderRadius: 10,
     },
     title_image_view:{
@@ -164,28 +181,32 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     profile_img:{
-        width: 50,
-        height: 50,
+        width: 40,
+        height: 40,
+        resizeMode: "cover",
         marginRight: 8,
     },
     heading_text:{
         fontWeight:'bold',
-        fontSize: 27,
+        fontSize: 22,
         fontFamily: 'Monospace',
         marginTop: 10,
         marginBottom: 20,
+        color: '#2D3047',
     },
     title_text:{
         fontWeight:'bold',
-        fontSize: 25,
-        fontFamily: 'Monospace',
+        fontSize: 18,
+        // fontFamily: 'Monospace',
     },
     languages_text:{
-        fontSize: 15,
-        fontFamily: 'Monospace',
+        fontSize: 14,
+        color: "#424242",
+        // fontStyle: 'italic'
+        // fontFamily: 'Monospace',
     },
     title_text_View:{
-        width: '95%',
+        width: '85%',
         display: 'flex',
         flexDirection: 'column',
     },
@@ -194,25 +215,40 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         
     },
-    action_buttons_view:{
-        display: 'flex',
+    wrapView: {
+        display:'inline-flex',
         flexDirection: 'row',
+        flexWrap: 'wrap',
+        
+    },
+    action_buttons_view:{
+        display:'inline-flex',
+        borderTopColor: '#e9e9e9',
+        borderTopWidth: 0.5,
+        marginTop: 15,
+        paddingTop: 20,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
         marginBottom: 10,
     },
     touchable:{
-        borderColor: "#D0D1D2",
-        borderRadius: 5,
-        borderWidth: 1,
+        // borderColor: "#e9e9e9",
+        borderRadius: 6,
+        // borderWidth: 1.5,
         paddingHorizontal: 10,
         paddingVertical: 5,
+        backgroundColor: '#e9e9e9',
         marginRight: 10,
+        marginBottom: 5,
         shadowColor: '#000000',
         shadowOffset: {
         width: 0,
-        height: 2
+        height: 0.5
         },
-        shadowRadius: 5,
-        shadowOpacity: 0.3,
+        shadowRadius: 1.7,
+      shadowOpacity: 0.5,
+        // shadowRadius: 5,
+        // shadowOpacity: 0.3,
       },
       button_text:{
         color:'black',
@@ -226,7 +262,7 @@ const styles = StyleSheet.create({
         shadowColor: '#000000',
         shadowOffset: {
           width: 0,
-          height: 2
+          height: 0.5
         },
         shadowRadius: 5,
         shadowOpacity: 0.5,

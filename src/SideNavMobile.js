@@ -77,9 +77,9 @@ class SideNavMobile extends React.Component {
             <Image style={{width: img_width, height: img_width,
               borderRadius: '50%'}} source={this.state.profile_img}  />
           </View>
-          <View style={{width: 'auto', alignItems: "center", justifyContent: "center", flexDirection: 'column'}}>
+          <View style={{width: 'auto', alignItems: "center", justifyContent: "center", flexDirection: 'column', marginBottom: 20}}>
             <Text style = {styles.nameText}> Michael Vandi</Text>
-            <Text style ={styles.posText}> Full-Stack Developer</Text>
+            <Text style ={styles.posText}> Software Engineer</Text>
           </View>
           <View>
           <div className="navbar" style={{flexDirection: 'column'}}>
@@ -147,33 +147,40 @@ const styles = StyleSheet.create({
   main: {
     flexDirection: "column",
     width: 'auto',
-    backgroundColor: "#ECECEC",
-    height: device_height,
+    // backgroundColor: "#ECECEC",
+    backgroundColor: "#fdfdfd",
+    height: '100%',
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 0.5
     },
     shadowRadius: 5,
     shadowOpacity: 0.7,
-    padding: 10,
-    borderRadius: 10,
+    // padding: 10,
+    // borderRadius: 10,
     position: 'fixed',
+    left: 0,
     zIndex:210,
-    marginTop: 49,
+    marginTop: 40,
+    paddingTop: 20,
   
   },
   button:{
     display: 'flex',
     flexDirection: 'row',
-    borderBottomColor: "#D0D1D2",
-    borderBottomWidth: 1,
+    // borderBottomColor: "#D0D1D2",
+    // borderBottomWidth: 1,
+    borderBottomColor: "#e9e9e9",
+    borderBottomWidth: 0.7,
+    // borderColor: '#e9e9e9',
+    // borderWidth: 0.7,
     width:'100%',
     padding: 5,
     marginBottom: 5,
   },
   text:{
-    fontSize: 15,
+    fontSize: 14,
   },
   profile_img:{
     borderRadius: "50%",
@@ -183,15 +190,17 @@ const styles = StyleSheet.create({
   nameText:{
     fontWeight:"bold",
     fontSize: 19,
-    fontFamily:'Monospace',
+    // fontFamily:'Monospace',
     color: '#2D3047',
   },
   posText:{
     fontSize: 13,
-    fontFamily:'Monospace'
+    // fontFamily:'Monospace'
   },
   copyrightText:{
-    width: "100%",
+    paddingTop: 10,
+    width: "97%",
+    fontSize: 12,
     textAlign:"center",
   }
 });

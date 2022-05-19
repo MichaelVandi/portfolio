@@ -67,3 +67,7 @@ yarn.lock
 src/Firebase.js
 src/Global.js
 firebase
+.firebaserc
+firebaserc
+./firebaserc
+

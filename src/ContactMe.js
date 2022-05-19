@@ -1,10 +1,12 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FaEnvelope, FaGithub, FaPhone, FaLinkedin, FaInstagram} from 'react-icons/fa';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+// import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import * as emailjs from 'emailjs-com'
 import Global from './Global';
 import Recaptcha from 'react-recaptcha';
@@ -100,13 +102,13 @@ class ContactMe extends React.Component{
         return(
             <View>
                 <Text style={styles.heading_text}>
-                    Contact M<mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>e</mark>
+                    Get in Touc<mark style={{backgroundColor: '#2D3047', color: 'white', borderRadius: 5}}>h</mark>
                 </Text>
                 <View style={{marginTop: 20, marginBottom: 50}}>
                     {/* Contact row */}
                     <Row>
                         {/* Col for main contact info */}
-                        <Col sm="5" style={{marginBottom: 15}}>
+                        <Col style={{marginBottom: 15}}>
                             <View style={styles.message_card}>
                                 {/* Contains the contact me card header */}
                                 <View>
@@ -125,7 +127,7 @@ class ContactMe extends React.Component{
 
                                     <Text style={styles.info_text}> 
                                     <FaPhone style={{marginRight: 5}}/> <a href ="">
-                                    +1(443) 582 9119</a></Text>
+                                    +1(443) 582 9119 </a> (it's a bot)</Text>
                                     
                                     <Text style={styles.info_text}> 
                                     <FaLinkedin style={{marginRight: 5}}/>LinkedIn: <a href ="https://www.linkedin.com/in/michael-vandi/" target="_blank">
@@ -158,64 +160,32 @@ class ContactMe extends React.Component{
                                 {/* Contains the contact me inputs */}
                                 <View>
 
-                                    <MDBContainer>
-                                        <MDBRow>
-                                            <MDBCol>
+                                    
                                             <form>
                                                 
                                                 <div className="grey-text">
-                                                <MDBInput
-                                                    label="Your name"
-                                                    icon="user"
-                                                    group
-                                                    type="text"
-                                                    validate
-                                                    error="wrong"
-                                                    success="right"
-                                                    id="from_name"
-                                                    key="from_name"
-                                                    value={this.state.from_name}
-                                                    onInput={this.handleInput}
-                                                />
-                                                <MDBInput
-                                                    label="Your email"
-                                                    icon="envelope"
-                                                    group
-                                                    type="email"
-                                                    validate
-                                                    error="wrong"
-                                                    success="right"
-                                                    id="from_email"
-                                                    key="from_email"
-                                                    value={this.state.from_email}
-                                                    onInput={this.handleInput}
-                                                />
-                                                <MDBInput
-                                                    label="Subject"
-                                                    icon="tag"
-                                                    group
-                                                    type="text"
-                                                    validate
-                                                    error="wrong"
-                                                    success="right"
-                                                    id="subject"
-                                                    key="subject"
-                                                    value={this.state.subject}
-                                                    onInput={this.handleInput}
-                                                />
-                                                <MDBInput
-                                                    type="textarea"
-                                                    rows="2"
-                                                    label="Your message"
-                                                    icon="pencil-alt"
-                                                    id="message"
-                                                    key="message"
-                                                    value={this.state.message}
-                                                    onInput={this.handleInput}
-                                                />
+                                                    <TextField style={{width: '100%', borderRadius: 8, marginBottom: 15}} 
+                                                    id="from_name" label="Your Name" variant="outlined" key="from_name" type="text"
+                                                    onChange={this.handleInput} value={this.state.from_name}/>
+
+                                                    <TextField style={{width: '100%', borderRadius: 8, marginBottom: 15}} 
+                                                    id="from_email" label="Your Email" variant="outlined" key="from_email" type="email"
+                                                    onChange={this.handleInput} value={this.state.from_email}/>
+
+                                                    <TextField style={{width: '100%', borderRadius: 8, marginBottom: 15}} 
+                                                    id="subject" label="Subject" variant="outlined" key="subject" type="text"
+                                                    onChange={this.handleInput} value={this.state.subject}/>
+
+                                                    <TextField style={{width: '100%', borderRadius: 8, marginBottom: 15}} 
+                                                    id="message" label="Your Message" variant="outlined" key="message" type="text" 
+                                                    rows={3} multiline
+                                                    onChange={this.handleInput} value={this.state.message}/>
+
+                                                
                                                 </div>
-                                                <div style={{marginTop: 10, marginBottom: 10}}>
+                                                <div className="text-center" style={{marginTop: 10, marginBottom: 10, width: '90%'}}>
                                                     <Recaptcha
+                                                        size="normal"
                                                         sitekey={recaptchaSiteKey}
                                                         render="explicit"
                                                         verifyCallback={this.verifyCallback}
@@ -224,17 +194,20 @@ class ContactMe extends React.Component{
                                                 </div>
                                                 
                                                 <div className="text-center">
-                                                <MDBBtn onClick={()=> this.onSendClick()}
+                                                <TouchableOpacity  style={styles.touchable} 
+                                                onPress={() => this.onSendClick()}>
+                                                    
+                                                    <Text style={styles.textSend}>Send</Text>
+                                                </TouchableOpacity>
+                                                {/* <MDBBtn onClick={()=> this.onSendClick()}
                                                     style={{width: '100%', }} outline color="secondary">
                                                     Send 
-                                                </MDBBtn>
+                                                </MDBBtn> */}
                                                 </div>
                                                 <Text style={{color: 'green'}}>{this.state.success_msg}</Text>
                                                 <Text style={{color: 'red'}}>{this.state.fail_msg}</Text>
                                             </form>
-                                            </MDBCol>
-                                        </MDBRow>
-                                    </MDBContainer>
+                                            
 
                                 </View>
 
@@ -253,12 +226,12 @@ const styles= StyleSheet.create({
     message_card:{
         display: 'flex',
         flexDirection: 'column',
-        borderColor: '#D0D1D2',
-        borderWidth: 1,
+        borderColor: '#e9e9e9',
+        borderWidth: 0.7,
         borderRadius: 10,
         width: '100%',
         height: '100%',
-        padding:10,
+        padding: 15,
         marginBottom: 20,
     },
     message_header_view:{
@@ -267,25 +240,54 @@ const styles= StyleSheet.create({
         alignItems: 'center'
     },
     message_header:{
-        width: '80%',
+        width: '95%',
         marginBottom: 5,
+        textAlign: 'center',
     },
     message_header_text:{
         textAlign: 'center',
-        fontFamily: 'Monospace',
-        fontSize: 25,
+        fontSize: 18,
         fontWeight:'bold',
+        marginBottom: 5,
     },
     heading_text:{
         fontWeight:'bold',
-        fontSize: 27,
+        fontSize: 22,
         fontFamily: 'Monospace',
         marginVertical: 10, 
         color: '#2D3047',
     },
     info_text:{
-        fontSize: 17,
+        fontSize: 16,
         marginVertical: 5,
-    }
+    },
+    touchable:{
+        // borderColor: "#e9e9e9",
+        borderRadius: 6,
+        // borderWidth: 1.5,
+        width: '100%', 
+        height: 50, 
+        display: 'flex', 
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        paddingVertical: 5,
+        backgroundColor: '#2D3047',
+        // backgroundColor: '#e9e9e9',
+        shadowColor: '#000000',
+        shadowOffset: {
+        width: 0,
+        height: 0.5
+        },
+        shadowRadius: 1.7,
+      shadowOpacity: 0.5,
+        // shadowRadius: 5,
+        // shadowOpacity: 0.3,
+      },
+      textSend: {
+        fontSize: 20, 
+        color: 'white',
+        fontWeight: 'bold'
+      }
 })
 export default ContactMe;

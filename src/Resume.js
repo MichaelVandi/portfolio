@@ -41,14 +41,21 @@ class Resume extends React.Component{
                 <View>
                     <Row>
                         <Col sm='7'>
-                            <Text style={styles.organization_text}>
-                                {experience.organization} - {experience.position}
-                            </Text>
+                            <View style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
+                                <Image style={styles.logos} source={experience.logo} />
+                                <Text style={styles.organization_text}>
+                                    {experience.organization} - 
+                                    <strong style={{fontStyle: 'normal', 
+                                    fontWeight: 'bold', color: '#585858'}}>{experience.position}</strong>
+                                </Text>
+                            </View>
+                           
                         </Col>
 
                         <Col sm='5'>
                             <View style={styles.top}>
                                 <Text style={styles.locationText}>{experience.location}</Text>
+                                <View style={styles.dot}/>
                                 <Text style={styles.durationText}>{experience.duration}</Text>  
                             </View>
                         </Col>
@@ -104,20 +111,20 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         margin: 5,
         padding: 10,
-        borderColor: '#D0D1D2',
-        borderWidth: 1,
+        borderColor: '#e9e9e9',
+        borderWidth: 0.7,
         borderRadius: 10,
         
     },
     title_text:{
         fontWeight:'bold',
-        fontSize: 25,
-        fontFamily: 'Monospace',
+        fontSize: 18,
+        // fontFamily: 'Monospace',
         marginVertical: 10,
     },
     heading_text:{
         fontWeight:'bold',
-        fontSize: 27,
+        fontSize: 22,
         fontFamily: 'Monospace',
         alignSelf:'baseline',
         marginVertical: 10, 
@@ -140,14 +147,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     locationText: {
-        fontStyle: 'italic',
-        fontSize: 16,
-        marginHorizontal: 10,
+        // fontStyle: 'italic',
+        fontSize: 14,
+        marginLeft: 5,
+        color: "#424242",
     },
     durationText: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: '#585858',
+        // fontWeight: 'bold',
+        fontSize: 14,
+        color: "#424242",
     },
     role_text:{
         fontWeight: 'bold',
@@ -159,19 +167,28 @@ const styles = StyleSheet.create({
         // marginBottom: 10,
     },
     logos:{
-        width: 40,
-        height: 40,
+        width: 35,
+        height: 35,
         marginRight: 10,
     },
     top: {
         width: '100%',
         display: 'flex', 
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-evenly',
     },
     descriptionView: {
         paddingVertical: 10,
-    }
+    },
+    dot: {
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+        marginHorizontal: 7,
+        backgroundColor: "#424242",
+        // marginRight: 7,
+    },
 
 
 });

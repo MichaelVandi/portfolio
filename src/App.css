@@ -1,3 +1,58 @@
 .navbar > .active {
     border-bottom: 1px solid black;
 }
+.seeMore {
+    cursor: pointer;
+    font-weight: bold;
+    /* text-decoration: underline; */
+}
+
+a:hover {
+    cursor: pointer;
+}
+.projectActionButtons {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    /* border-color: #e9e9e9; */
+    
+}
+.projectActionButtons:hover {
+    font-weight: bold;
+    text-decoration: none;
+    /* background-color: #e9e9e9; */
+    /* color: #828282; */
+}
+.actionButtonsTouchable:hover {
+    background-color: '#e9e9e9';
+}
+#projects {
+    -webkit-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    -moz-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+}
+#home {
+    -webkit-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    -moz-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+}
+#about {
+    -webkit-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    -moz-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+}
+#skills {
+    -webkit-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    -moz-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+}
+#resume {
+    -webkit-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    -moz-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+}
+#contact {
+    -webkit-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    -moz-box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+    box-shadow: 0px 0px 0.5px 1.5px rgba(233, 233, 233, 1);
+}
